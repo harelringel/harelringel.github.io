@@ -1,0 +1,84 @@
+{
+  "name": "Harel Ringel",
+  "title": "Project Manager",
+  "photo": "photo.jpg",
+  "contact": {
+    "email": "harelringel@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/harel-ringel",
+    "github": "https://github.com/harelringel"
+  },
+  "profile": "Expert Project Manager, experienced in managing multiple tasks under pressure, managing time and motivate people, data driven, with analytical and creative thinking. Believes that if it is worth doing something - it is worth doing excellent. Master in prioritizing – Less is More.",
+  "skills": {
+    "programming": [
+      "Python",
+      "SQL",
+      "VBA",
+      "R",
+      "RPA (UiPath)",
+      "Git",
+      "Linux"
+    ],
+    "concepts": [
+      "ETL",
+      "Data Structures & Modeling"
+    ],
+    "languages": {
+      "Hebrew": "Native",
+      "English": "Fluent",
+      "Arabic": "Basic"
+    }
+  },
+  "experience": [
+    {
+      "title": "Project Manager",
+      "company": "Kpi Finance",
+      "period": "2022 - Present",
+      "achievements": [
+        "Increased total service hours by automating launch and delivery processes and creating a reusable procedure and main repository, contributing to a significant revenue boost.",
+        "Developed a customized project management platform using Excel VBA and JS, optimizing project allocation and enhancing overall team efficiency.",
+        "Standardized and modernized project launch methods, saving over 2 hours per project."
+      ]
+    },
+    {
+      "title": "Data Analyst",
+      "company": "Kpi Finance",
+      "period": "2020 - 2022",
+      "achievements": [
+        "Built databases and created dashboards for BI purposes, providing actionable insights that informed strategic decisions.",
+        "Developed tools using VBA, SQL, Python, and Excel for automating manual tasks, resulting in a time savings of over 4 hours per week."
+      ]
+    },
+    {
+      "title": "Deputy company commander in the Armored Corps, Captain (res.)",
+      "company": "IDF",
+      "period": "2014 - 2019",
+      "achievements": [
+        "Graduated with honors in multiple roles, including Outstanding Battalion and Divisional Outstanding."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "BA in Economics",
+      "institution": "Tel Aviv University",
+      "period": "2019 - 2024"
+    }
+  ],
+  "social": [
+    {
+      "role": "Financial Advisor",
+      "organization": "Paamonim (non-profit organization)",
+      "period": "2020 - 2024"
+    },
+    {
+      "role": "FOA - Monitoring antisemitic content on the Internet",
+      "organization": "",
+      "period": "2019 - 2022"
+    },
+    {
+      "role": "Telfed - Assistance to families who immigrated from South Africa",
+      "organization": "",
+      "period": "2019 - 2020"
+    }
+  ]
+}
