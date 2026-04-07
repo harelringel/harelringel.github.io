@@ -1,120 +1,210 @@
-// app.js - Dynamic Resume Renderer
+// app.js - Resume rendering logic
 
+// Fetch and load resume data
 async function loadResume() {
-  try {
-    const response = await fetch('resume.json');
-    if (!response.ok) {
-      throw new Error('HTTP error! status: ' + response.status);
+    try {
+        const response = await fetch('resume.json');
+        if (!response.ok) {
+            throw new Error('Failed to load resume data');
+        }
+        const data = await response.json();
+        renderResume(data);
+    } catch (error) {
+        console.error('Error loading resume:', error);
+        document.getElementById('content').innerHTML =
+            '<p style="color: red;">Error loading resume data. Please check console for details.</p>';
     }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error loading resume:', error);
-    document.getElementById('app').innerHTML = '<div class="error"><h2>Error Loading Resume</h2><p>Unable to load resume data. Please try again later.</p></div>';
-    return null;
-  }
 }
 
+// Main render function
 function renderResume(data) {
-  const app = document.getElementById('app');
-  app.innerHTML = renderHeader(data.header) + renderProfile(data.profile) + renderSkills(data.skills) + renderExperience(data.experience) + renderEducation(data.education) + renderSocial(data.social);
+    renderHeader(data);
+    renderProfile(data);
+    renderSkills(data);
+    renderExperience(data);
+    renderEducation(data);
+    renderSocial(data);
 }
 
-function renderHeader(header) {
-  const contactLinks = header.contact.map(contact => {
-    let icon = '';
-    let url = contact.url;
-    
-    // Determine icon based on type
-    switch(contact.type) {
-      case 'email':
-        icon = '✉️';
-        url = 'mailto:' + contact.url;
-        break;
-      case 'phone':
-        icon = '📱';
-        url = 'tel:' + contact.url;
-        break;
-      case 'linkedin':
-        icon = '💼';
-        break;
-      case 'github':
-        icon = '👨‍💻';
-        break;
-      case 'website':
-        icon = '🌐';
-        break;
-      default:
-        icon = '🔗';
+// Render header with name, title, and contact info
+function renderHeader(data) {
+    const header = document.getElementById('header');
+
+    let html = '';
+
+    // Photo (if exists)
+    if (data.photo) {
+        html += `<img src="${data.photo}" alt="${data.name}" class="photo" onerror="this.style.display='none'">`;
     }
-    
-    return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + icon + ' ' + contact.label + '</a>';
-  }).join('');
 
-  const photoHtml = header.photo ? '<img src="' + header.photo + '" alt="' + header.name + '" class="profile-photo">' : '';
+    // Name and title
+    html += `
+        <h1>${data.name}</h1>
+        <p class="title">${data.title}</p>
+    `;
 
-  return '<header class="header"><div class="header-content"><div class="header-text"><h1>' + header.name + '</h1><p class="title">' + header.title + '</p><div class="contact">' + contactLinks + '</div></div>' + photoHtml + '</div></header>';
+    // Contact links
+    if (data.contact) {
+        html += '<div class="contact">';
+        if (data.contact.email) {
+            html += `<a href="mailto:${data.contact.email}">${data.contact.email}</a>`;
+        }
+        if (data.contact.linkedin) {
+            html += `<a href="${data.contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
+        }
+        if (data.contact.github) {
+            html += `<a href="${data.contact.github}" target="_blank" rel="noopener">GitHub</a>`;
+        }
+        html += '</div>';
+    }
+
+    header.innerHTML = html;
 }
 
-function renderProfile(profile) {
-  return '<section class="section profile"><h2>👤 ' + profile.title + '</h2><p>' + profile.summary + '</p></section>';
+// Render profile section
+function renderProfile(data) {
+    if (!data.profile) return;
+
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
+    section.innerHTML = `
+        <h2>Profile</h2>
+        <p>${data.profile}</p>
+    `;
+    content.appendChild(section);
 }
 
-function renderSkills(skills) {
-  const renderSkillCategory = (category) => {
-    const skillTags = category.items.map(skill => '<span class="skill-tag">' + skill + '</span>').join('');
-    return '<div class="skill-category"><h3>' + category.category + '</h3><div class="skills-list">' + skillTags + '</div></div>';
-  };
+// Render skills section
+function renderSkills(data) {
+    if (!data.skills) return;
 
-  const categories = skills.categories.map(renderSkillCategory).join('');
-  return '<section class="section skills"><h2>🛠️ ' + skills.title + '</h2>' + categories + '</section>';
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
+
+    let html = '<h2>Skills</h2>';
+
+    // Programming & Tools
+    if (data.skills.programming) {
+        html += `
+            <div class="skills-group">
+                <h4>Programming & Tools:</h4>
+                <p class="skills-list">${data.skills.programming.join(', ')}</p>
+            </div>
+        `;
+    }
+
+    // Concepts
+    if (data.skills.concepts) {
+        html += `
+            <div class="skills-group">
+                <h4>Concepts:</h4>
+                <p class="skills-list">${data.skills.concepts.join(', ')}</p>
+            </div>
+        `;
+    }
+
+    // Languages
+    if (data.skills.languages) {
+        const langs = Object.entries(data.skills.languages)
+            .map(([lang, level]) => `${lang}: ${level}`)
+            .join(' | ');
+        html += `
+            <div class="skills-group">
+                <h4>Languages:</h4>
+                <p class="skills-list">${langs}</p>
+            </div>
+        `;
+    }
+
+    section.innerHTML = html;
+    content.appendChild(section);
 }
 
-function renderExperience(experience) {
-  const renderJob = (job) => {
-    const achievements = job.achievements && job.achievements.length > 0
-      ? '<ul>' + job.achievements.map(achievement => '<li>' + achievement + '</li>').join('') + '</ul>'
-      : '';
+// Render experience section
+function renderExperience(data) {
+    if (!data.experience || data.experience.length === 0) return;
 
-    const locationText = job.location ? ' • ' + job.location : '';
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
 
-    return '<div class="experience-item"><div class="experience-header"><div><h3>' + job.position + '</h3><p class="company">' + job.company + locationText + '</p></div><span class="date">' + job.period + '</span></div><p class="description">' + job.description + '</p>' + achievements + '</div>';
-  };
+    let html = '<h2>Experience</h2>';
 
-  const jobs = experience.items.map(renderJob).join('');
-  return '<section class="section experience"><h2>💼 ' + experience.title + '</h2>' + jobs + '</section>';
+    data.experience.forEach(job => {
+        html += `
+            <div class="experience-item">
+                <div class="item-header">
+                    <div class="item-title">${job.title}</div>
+                    <div class="item-company">${job.company}</div>
+                    <div class="item-period">${job.period}</div>
+                </div>
+        `;
+
+        if (job.achievements && job.achievements.length > 0) {
+            html += '<ul class="achievements">';
+            job.achievements.forEach(achievement => {
+                html += `<li>${achievement}</li>`;
+            });
+            html += '</ul>';
+        }
+
+        html += '</div>';
+    });
+
+    section.innerHTML = html;
+    content.appendChild(section);
 }
 
-function renderEducation(education) {
-  const renderDegree = (degree) => {
-    const locationText = degree.location ? ' • ' + degree.location : '';
-    const detailsHtml = degree.details ? '<p class="details">' + degree.details + '</p>' : '';
+// Render education section
+function renderEducation(data) {
+    if (!data.education || data.education.length === 0) return;
 
-    return '<div class="education-item"><div class="education-header"><div><h3>' + degree.degree + '</h3><p class="institution">' + degree.institution + locationText + '</p></div><span class="date">' + degree.period + '</span></div>' + detailsHtml + '</div>';
-  };
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
 
-  const degrees = education.items.map(renderDegree).join('');
-  return '<section class="section education"><h2>🎓 ' + education.title + '</h2>' + degrees + '</section>';
+    let html = '<h2>Education</h2>';
+
+    data.education.forEach(edu => {
+        html += `
+            <div class="education-item">
+                <div class="item-title">${edu.degree}</div>
+                <div class="item-institution">${edu.institution}</div>
+                <div class="item-period">${edu.period}</div>
+            </div>
+        `;
+    });
+
+    section.innerHTML = html;
+    content.appendChild(section);
 }
 
-function renderSocial(social) {
-  const renderActivity = (activity) => {
-    const locationText = activity.location ? ' • ' + activity.location : '';
-    const achievementsHtml = activity.achievements && activity.achievements.length > 0 
-      ? '<ul>' + activity.achievements.map(achievement => '<li>' + achievement + '</li>').join('') + '</ul>' 
-      : '';
+// Render social involvement section
+function renderSocial(data) {
+    if (!data.social || data.social.length === 0) return;
 
-    return '<div class="social-item"><div class="social-header"><div><h3>' + activity.role + '</h3><p class="organization">' + activity.organization + locationText + '</p></div><span class="date">' + activity.period + '</span></div><p class="description">' + activity.description + '</p>' + achievementsHtml + '</div>';
-  };
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
 
-  const activities = social.items.map(renderActivity).join('');
-  return '<section class="section social"><h2>🤝 ' + social.title + '</h2>' + activities + '</section>';
+    let html = '<h2>Social Involvement</h2>';
+
+    data.social.forEach(item => {
+        html += `
+            <div class="social-item">
+                <div class="item-title">${item.role}</div>
+        `;
+
+        if (item.organization) {
+            html += `<div class="item-organization">${item.organization}</div>`;
+        }
+
+        html += `
+                <div class="item-period">${item.period}</div>
+            </div>
+        `;
+    });
+
+    section.innerHTML = html;
+    content.appendChild(section);
 }
 
-// Initialize the app when DOM is ready
-document.addEventListener('DOMContentLoaded', async () => {
-  const resumeData = await loadResume();
-  if (resumeData) {
-    renderResume(resumeData);
-  }
-});
+// Load resume when page loads
+document.addEventListener('DOMContentLoaded', loadResume);
