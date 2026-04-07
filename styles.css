@@ -21,22 +21,27 @@ body {
     padding: 30px;
 }
 
-/* Header Styles - Centered with photo */
+/* Header Styles - Left-aligned with photo */
 header {
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
     margin-bottom: 60px;
     padding-top: 40px;
     border-bottom: none;
 }
 
 header .photo {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 30px;
-    display: block;
+    flex-shrink: 0;
     border: 3px solid #e7e9ec;
+}
+
+header .header-content {
+    flex: 1;
 }
 
 header h1 {
@@ -56,7 +61,6 @@ header .title {
 
 .contact {
     display: flex;
-    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
     font-size: 14px;
@@ -194,6 +198,9 @@ a:hover {
     }
 
     header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
         padding-top: 20px;
         margin-bottom: 40px;
     }
@@ -209,6 +216,7 @@ a:hover {
     header .photo {
         width: 120px;
         height: 120px;
+        margin-bottom: 20px;
     }
 
     section {
@@ -225,7 +233,6 @@ a:hover {
     .contact {
         flex-direction: column;
         gap: 12px;
-        align-items: center;
     }
 }
 

@@ -37,6 +37,9 @@ function renderHeader(data) {
         html += `<img src="${data.photo}" alt="${data.name}" class="photo" onerror="this.style.display='none'">`;
     }
 
+    // Header content wrapper
+    html += '<div class="header-content">';
+
     // Name and title
     html += `
         <h1>${data.name}</h1>
@@ -57,6 +60,8 @@ function renderHeader(data) {
         }
         html += '</div>';
     }
+
+    html += '</div>'; // Close header-content
 
     header.innerHTML = html;
 }
