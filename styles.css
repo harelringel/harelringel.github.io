@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* Reset and Base Styles - Matching elad.shaham.net exactly */
 * {
     margin: 0;
     padding: 0;
@@ -7,43 +7,59 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.5;
     color: #333;
     background-color: #fff;
-    padding: 20px;
+    margin-bottom: 80px;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 768px;
     margin: 0 auto;
+    padding: 30px;
 }
 
-/* Header Styles */
+/* Header Styles - Centered with photo */
 header {
-    margin-bottom: 40px;
-    border-bottom: 2px solid #e32b46;
-    padding-bottom: 20px;
+    text-align: center;
+    margin-bottom: 60px;
+    padding-top: 40px;
+    border-bottom: none;
+}
+
+header .photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 30px;
+    display: block;
+    border: 3px solid #e7e9ec;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 5px;
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 8px;
 }
 
 header .title {
-    font-size: 1.25rem;
+    font-size: 18px;
     font-weight: 300;
-    color: #666;
-    font-style: italic;
-    margin-bottom: 15px;
+    color: #95a5a6;
+    margin-bottom: 20px;
+    font-style: normal;
 }
 
 .contact {
     display: flex;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    font-size: 14px;
 }
 
 .contact a {
@@ -54,174 +70,215 @@ header .title {
 
 .contact a:hover {
     opacity: 0.7;
-    text-decoration: underline;
 }
 
-/* Photo Styles */
-.photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    display: none; /* Hidden until photo is added */
-}
-
-.photo.visible {
-    display: block;
-}
-
-/* Section Styles */
+/* Section Styles - Two column layout */
 section {
-    margin-bottom: 40px;
+    display: flex;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 section h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #e32b46;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
+    flex: 1;
+    font-size: 24px;
+    font-weight: 300;
+    color: #555;
+    text-align: right;
+    padding-right: 30px;
+}
+
+section .section-content {
+    flex: 4;
 }
 
 section h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
     margin-bottom: 5px;
 }
 
-/* Two-Column Layout for Desktop */
-.section-content {
-    display: flex;
-    gap: 30px;
-}
-
-.section-title {
-    flex: 0 0 150px;
-    font-weight: 600;
-    color: #555;
-}
-
-.section-details {
-    flex: 1;
+section p {
+    margin-bottom: 10px;
+    color: #333;
 }
 
 /* Experience and Education Items */
 .experience-item,
 .education-item,
 .social-item {
-    margin-bottom: 25px;
-}
-
-.item-header {
-    margin-bottom: 8px;
+    margin-bottom: 24px;
 }
 
 .item-title {
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-weight: 400;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 3px;
 }
 
 .item-company,
 .item-institution,
 .item-organization {
-    color: #666;
-    font-style: italic;
+    color: #555;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .item-period {
-    color: #999;
-    font-size: 0.9rem;
+    color: #95a5a6;
+    font-size: 14px;
+    margin-top: 2px;
 }
 
 .achievements {
     list-style: disc;
-    margin-left: 20px;
+    padding-left: 21px;
     margin-top: 10px;
 }
 
 .achievements li {
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 /* Skills Section */
 .skills-group {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .skills-group h4 {
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 15px;
+    color: #555;
     margin-bottom: 5px;
 }
 
 .skills-list {
-    color: #555;
+    color: #333;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 /* Footer */
 footer {
     text-align: center;
+    margin-top: 60px;
     padding: 20px 0;
-    color: #999;
-    font-size: 0.9rem;
-    border-top: 1px solid #ddd;
+    color: #95a5a6;
+    font-size: 13px;
+    font-weight: 300;
+    border-top: none;
+}
+
+/* Links */
+a {
+    color: #e32b46;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Responsive Design - Mobile */
 @media (max-width: 768px) {
     body {
         font-size: 14px;
-        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    header {
+        padding-top: 20px;
+        margin-bottom: 40px;
     }
 
     header h1 {
-        font-size: 2rem;
+        font-size: 26px;
     }
 
     header .title {
-        font-size: 1.1rem;
+        font-size: 16px;
     }
 
-    .section-content {
+    header .photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    section {
         flex-direction: column;
-        gap: 10px;
     }
 
-    .section-title {
-        flex: none;
-        font-size: 1.2rem;
-        color: #e32b46;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 5px;
-        margin-bottom: 10px;
+    section h2 {
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 16px;
+        font-size: 22px;
     }
 
     .contact {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    header .title {
+        font-size: 15px;
+    }
+
+    section h2 {
+        font-size: 20px;
     }
 }
 
 /* Print Styles */
 @media print {
     body {
-        font-size: 12pt;
+        font-size: 11pt;
         color: #000;
         background: #fff;
+        margin-bottom: 0;
     }
 
     .container {
         max-width: 100%;
+        padding: 20px;
     }
 
     header {
-        border-bottom: 2px solid #000;
+        padding-top: 0;
+        margin-bottom: 30px;
+    }
+
+    header .photo {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #000;
+    }
+
+    section {
+        page-break-inside: avoid;
+        margin-bottom: 20px;
     }
 
     section h2 {
         color: #000;
-        border-bottom: 1px solid #000;
     }
 
     .contact a {
@@ -231,9 +288,5 @@ footer {
 
     footer {
         display: none;
-    }
-
-    section {
-        page-break-inside: avoid;
     }
 }

@@ -69,7 +69,9 @@ function renderProfile(data) {
     const section = document.createElement('section');
     section.innerHTML = `
         <h2>Profile</h2>
-        <p>${data.profile}</p>
+        <div class="section-content">
+            <p>${data.profile}</p>
+        </div>
     `;
     content.appendChild(section);
 }
@@ -81,7 +83,7 @@ function renderSkills(data) {
     const content = document.getElementById('content');
     const section = document.createElement('section');
 
-    let html = '<h2>Skills</h2>';
+    let html = '<h2>Skills</h2><div class="section-content">';
 
     // Programming & Tools
     if (data.skills.programming) {
@@ -116,6 +118,7 @@ function renderSkills(data) {
         `;
     }
 
+    html += '</div>';
     section.innerHTML = html;
     content.appendChild(section);
 }
@@ -127,16 +130,14 @@ function renderExperience(data) {
     const content = document.getElementById('content');
     const section = document.createElement('section');
 
-    let html = '<h2>Experience</h2>';
+    let html = '<h2>Experience</h2><div class="section-content">';
 
     data.experience.forEach(job => {
         html += `
             <div class="experience-item">
-                <div class="item-header">
-                    <div class="item-title">${job.title}</div>
-                    <div class="item-company">${job.company}</div>
-                    <div class="item-period">${job.period}</div>
-                </div>
+                <div class="item-title">${job.title}</div>
+                <div class="item-company">${job.company}</div>
+                <div class="item-period">${job.period}</div>
         `;
 
         if (job.achievements && job.achievements.length > 0) {
@@ -150,6 +151,7 @@ function renderExperience(data) {
         html += '</div>';
     });
 
+    html += '</div>';
     section.innerHTML = html;
     content.appendChild(section);
 }
@@ -161,7 +163,7 @@ function renderEducation(data) {
     const content = document.getElementById('content');
     const section = document.createElement('section');
 
-    let html = '<h2>Education</h2>';
+    let html = '<h2>Education</h2><div class="section-content">';
 
     data.education.forEach(edu => {
         html += `
@@ -173,6 +175,7 @@ function renderEducation(data) {
         `;
     });
 
+    html += '</div>';
     section.innerHTML = html;
     content.appendChild(section);
 }
@@ -184,7 +187,7 @@ function renderSocial(data) {
     const content = document.getElementById('content');
     const section = document.createElement('section');
 
-    let html = '<h2>Social Involvement</h2>';
+    let html = '<h2>Social Involvement</h2><div class="section-content">';
 
     data.social.forEach(item => {
         html += `
@@ -202,6 +205,7 @@ function renderSocial(data) {
         `;
     });
 
+    html += '</div>';
     section.innerHTML = html;
     content.appendChild(section);
 }
