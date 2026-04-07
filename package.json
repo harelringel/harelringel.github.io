@@ -1,0 +1,15 @@
+{
+  "name": "harelringel-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Harel Ringel",
+  "main": "index.html",
+  "scripts": {
+    "export-pdf": "node export-pdf.js"
+  },
+  "keywords": ["portfolio", "resume", "cv"],
+  "author": "Harel Ringel",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}
