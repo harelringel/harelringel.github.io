@@ -21,27 +21,26 @@ body {
     padding: 30px;
 }
 
-/* Header Styles - Left-aligned with photo */
+/* Header Styles - Centered layout */
 header {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
+    text-align: center;
     margin-bottom: 60px;
     padding-top: 40px;
     border-bottom: none;
 }
 
 header .photo {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    flex-shrink: 0;
     border: 3px solid #e7e9ec;
+    display: block;
+    margin: 0 auto 20px;
 }
 
 header .header-content {
-    flex: 1;
+    /* Container for name, title, contact */
 }
 
 header h1 {
@@ -64,6 +63,7 @@ header .title {
     gap: 20px;
     flex-wrap: wrap;
     font-size: 14px;
+    justify-content: center;
 }
 
 .contact a {
@@ -106,7 +106,6 @@ section h3 {
 section p {
     margin-bottom: 15px;
     color: #333;
-    white-space: pre-line;
 }
 
 /* Experience and Education Items */

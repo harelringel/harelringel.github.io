@@ -73,7 +73,7 @@ function renderProfile(data) {
     const content = document.getElementById('content');
     const section = document.createElement('section');
     section.innerHTML = `
-        <h2>Profile</h2>
+        <h2>About</h2>
         <div class="section-content">
             <p>${data.profile}</p>
         </div>
