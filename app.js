@@ -19,6 +19,7 @@ async function loadResume() {
 // Main render function
 function renderResume(data) {
     renderHeader(data);
+    renderContact(data);
     renderProfile(data);
     renderSkills(data);
     renderExperience(data);
@@ -26,7 +27,7 @@ function renderResume(data) {
     renderSocial(data);
 }
 
-// Render header with name, title, and contact info
+// Render header with name and title only
 function renderHeader(data) {
     const header = document.getElementById('header');
 
@@ -46,24 +47,33 @@ function renderHeader(data) {
         <p class="title">${data.title}</p>
     `;
 
-    // Contact links
-    if (data.contact) {
-        html += '<div class="contact">';
-        if (data.contact.email) {
-            html += `<a href="mailto:${data.contact.email}">${data.contact.email}</a>`;
-        }
-        if (data.contact.linkedin) {
-            html += `<a href="${data.contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
-        }
-        if (data.contact.github) {
-            html += `<a href="${data.contact.github}" target="_blank" rel="noopener">GitHub</a>`;
-        }
-        html += '</div>';
-    }
-
     html += '</div>'; // Close header-content
 
     header.innerHTML = html;
+}
+
+// Render contact section
+function renderContact(data) {
+    if (!data.contact) return;
+
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
+
+    let contactHtml = '<h2>Contact</h2><div class="section-content">';
+
+    if (data.contact.email) {
+        contactHtml += `<p><a href="mailto:${data.contact.email}">${data.contact.email}</a></p>`;
+    }
+    if (data.contact.linkedin) {
+        contactHtml += `<p><a href="${data.contact.linkedin}" target="_blank" rel="noopener">LinkedIn</a></p>`;
+    }
+    if (data.contact.github) {
+        contactHtml += `<p><a href="${data.contact.github}" target="_blank" rel="noopener">GitHub</a></p>`;
+    }
+
+    contactHtml += '</div>';
+    section.innerHTML = contactHtml;
+    content.appendChild(section);
 }
 
 // Render profile section
