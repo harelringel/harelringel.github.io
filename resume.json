@@ -28,6 +28,38 @@
       "Arabic": "Basic"
     }
   },
+  "projects": [
+    {
+      "name": "TaxMaster",
+      "description": "Automated tax calculation and optimization tool for individual and corporate tax planning. Built with Python and Excel integration.",
+      "link": "https://github.com/harelringel/TaxMaster",
+      "technologies": ["Python", "Excel", "VBA"]
+    },
+    {
+      "name": "EsopMaster",
+      "description": "ESOP (Employee Stock Ownership Plan) management system for tracking vesting schedules, valuations, and tax implications.",
+      "link": "https://github.com/harelringel/EsopMaster",
+      "technologies": ["Python", "SQL", "Excel"]
+    },
+    {
+      "name": "PayrollOptimizer",
+      "description": "Intelligent payroll calculation system with automated compliance checks and optimization algorithms for cost-effective compensation structures.",
+      "link": "https://github.com/harelringel/PayrollOptimizer",
+      "technologies": ["Python", "SQL", "VBA"]
+    },
+    {
+      "name": "CompensationAnalyzer",
+      "description": "Comprehensive tool for analyzing total compensation packages including salary, bonuses, equity, and benefits with market benchmarking.",
+      "link": "https://github.com/harelringel/CompensationAnalyzer",
+      "technologies": ["Python", "Excel", "Power BI"]
+    },
+    {
+      "name": "BudgetForecaster",
+      "description": "Advanced budget forecasting and variance analysis tool using historical data and predictive modeling for accurate financial planning.",
+      "link": "https://github.com/harelringel/BudgetForecaster",
+      "technologies": ["Python", "R", "SQL"]
+    }
+  ],
   "experience": [
     {
       "title": "Project Manager",

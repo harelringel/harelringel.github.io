@@ -22,6 +22,7 @@ function renderResume(data) {
     renderContact(data);
     renderProfile(data);
     renderSkills(data);
+    renderProjects(data);
     renderExperience(data);
     renderEducation(data);
     renderSocial(data);
@@ -132,6 +133,41 @@ function renderSkills(data) {
             </div>
         `;
     }
+
+    html += '</div>';
+    section.innerHTML = html;
+    content.appendChild(section);
+}
+
+// Render projects section
+function renderProjects(data) {
+    if (!data.projects || data.projects.length === 0) return;
+
+    const content = document.getElementById('content');
+    const section = document.createElement('section');
+
+    let html = '<h2>Projects</h2><div class="section-content">';
+
+    data.projects.forEach(project => {
+        html += `
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-name">${project.name}</h3>
+                    ${project.link ? `<a href="${project.link}" class="project-link" target="_blank" rel="noopener">View Project →</a>` : ''}
+                </div>
+                <p class="project-description">${project.description}</p>
+        `;
+
+        if (project.technologies && project.technologies.length > 0) {
+            html += `<div class="project-technologies">`;
+            project.technologies.forEach(tech => {
+                html += `<span class="tech-tag">${tech}</span>`;
+            });
+            html += '</div>';
+        }
+
+        html += '</div>';
+    });
 
     html += '</div>';
     section.innerHTML = html;
